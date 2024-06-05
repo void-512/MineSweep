@@ -17,7 +17,7 @@ void display(const Board *board, bool answer) {
     }
     puts("");
     for (int i = 0; i < row; i++) {
-        printf("%d", i);
+        printf("%3d", i);
         for (int j = 0; j < col; j++) {
             Box *current = getSingle(board, i, j);
             if (!answer) {

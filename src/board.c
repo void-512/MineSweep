@@ -115,8 +115,11 @@ Board *init(int row, int col, int numMines) {
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             setShowState(getSingle(board, i, j), NONE);
+            setMine(getSingle(board, i, j), false);
         }
     }
+    board -> numMarked = 0;
+    board -> numDiscovered = 0;
     generateMines(board, numMines);
     updateMineAround(board);
     return board;
