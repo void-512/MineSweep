@@ -14,6 +14,6 @@ Features:
 How to build:
 1. git clone https://github.com/void-512/MineSweep.git
 2. mkdir MineSweep/build && cd MineSweep/build
-3. cmake ..
+3. cmake .. -G "Unix Makefiles"
 4. make
 5. ./MineSweep
