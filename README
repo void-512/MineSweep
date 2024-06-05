@@ -1,0 +1,17 @@
+This is a simple minesweep program
+
+Notice:
+Input in the form [row] [col] [cmd] for refresh of the board.
+Directly Ctrl + C to quit the program
+
+Features:
+1. Decouple input and logic part to prepare for computer solver [in the future]
+2. Flexible for extension with abstract data types
+3. Able to display all adjacent 0 boxes if the chosen box is 0
+
+How to build:
+1. git clone https://github.com/void-512/MineSweep.git
+2. mkdir build && cd build
+3. cmake ..
+4. make
+5. ./MineSweep
