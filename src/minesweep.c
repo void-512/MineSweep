@@ -16,7 +16,7 @@ static void help() {
 }
 
 static void argProcessor(int argc, char **argv, unsigned int *row, unsigned int *col, unsigned int *mine) {
-    if (!strcmp(argv[1], "-h")) {
+    if (argc == 2 && !strcmp(argv[1], "-h")) {
         help();
         exit(0);
     }
