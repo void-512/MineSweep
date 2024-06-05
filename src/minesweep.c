@@ -3,9 +3,59 @@
 #include "interaction.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+
+const int DEFAULTROW = 5;
+const int DEFAULTCOL = 10;
+const int DEFAULTMINE = 5;
+
+static void help() {
+    puts("Argument Format: ./MineSweep [row] [col] [mine]");
+    puts("Default Values: 5 10 5");
+    puts("Requirement: [mine] < [row] * [col]");
+}
+
+static void argProcessor(int argc, char **argv, unsigned int *row, unsigned int *col, unsigned int *mine) {
+    if (!strcmp(argv[1], "-h")) {
+        help();
+        exit(0);
+    }
+
+    switch (argc) {
+        case 2:
+            *row = atoi(argv[1]);
+            break;
+        case 3:
+            *row = atoi(argv[1]);
+            *col = atoi(argv[2]);
+            break;
+        case 4:
+            *row = atoi(argv[1]);
+            *col = atoi(argv[2]);
+            *mine = atoi(argv[3]);
+            break;
+        default:
+            return;
+    }
+
+    if (*row == 0 ||
+        *col == 0 ||
+        *mine == 0 ||
+        (*mine > *row * *col)) {
+        help();
+        puts("Wrong Input");
+        exit(0);
+    }
+}
 
 int main(int argc, char **argv) {
-    Board *newBoard = init(5, 10, 5);
+    unsigned int row = DEFAULTROW;
+    unsigned int col = DEFAULTCOL;
+    unsigned int mine = DEFAULTMINE;
+    
+    argProcessor(argc, argv, &row, &col, &mine);
+    
+    Board *newBoard = init(row, col, mine);
     while (true) {
         display(newBoard, false);
         EndStatus result = updateState(newBoard, getInput(newBoard), false);
@@ -20,6 +70,7 @@ int main(int argc, char **argv) {
             break;
         }
     }
+
     freeBoard(newBoard);
     return 0;
 }

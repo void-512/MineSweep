@@ -49,7 +49,9 @@ Command getInput(const Board *board) {
     assert(board);
     Command input = {0, 0, 0};
     printf("[row] [col] [cmd]: ");
-    int result = scanf("%d", &input.r) + scanf("%d", &input.c) + scanf("%d", &input.f);
+    int flagTemp = 0;
+    int result = scanf("%d", &input.r) + scanf("%d", &input.c) + scanf("%d", &flagTemp);
+    input.f = flagTemp;
     getchar();
     if (result != 3 || input.r > getRow(board) || input.c > getCol(board) || input.f < 0 || input.f > NUMFLAGS - 1) {
         puts("Wrong Input");
@@ -109,16 +111,20 @@ EndStatus updateState(Board *board, Command input, bool updateRecursion) {
         } else if (getMineAround(current) == 0) {
             setShowState(current, UNCOVER);
             if (row > 0) {
-                updateState(board, {row - 1, col, UNCOVER}, true);
+                Command newCmd = {row - 1, col, UNCOVER};
+                updateState(board, newCmd, true);
             }
             if (row < getRow(board) - 1) {
-                updateState(board, {row + 1, col, UNCOVER}, true);
+                Command newCmd = {row + 1, col, UNCOVER};
+                updateState(board, newCmd, true);
             }
             if (col > 0) {
-                updateState(board, {row, col - 1, UNCOVER}, true);
+                Command newCmd = {row, col - 1, UNCOVER};
+                updateState(board, newCmd, true);
             }
             if (col < getCol(board) - 1) {
-                updateState(board, {row, col + 1, UNCOVER}, true);
+                Command newCmd = {row, col + 1, UNCOVER};
+                updateState(board, newCmd, true);
             }
         }
     }
