@@ -11,7 +11,7 @@ static void displayHelp(const Board *board) {
 void display(const Board *board, bool answer) {
     const int row = getRow(board);
     const int col = getCol(board);
-    printf(" ");
+    printf("%3c", '#');
     for (int i = 0; i < col; i++) {
         printf("%3d", i);
     }
