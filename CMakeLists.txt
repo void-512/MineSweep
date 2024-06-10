@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.28)
-set(CMAKE_C_STANDARD 17)
+set(CMAKE_C_STANDARD 23)
 
 set (CMAKE_C_COMPILER gcc)
 
-add_compile_options(-Wall)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fsanitize=address -fsanitize=leak -fsanitize=undefined -fno-omit-frame-pointer -Ofast")
 
 project(MineSweep)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
