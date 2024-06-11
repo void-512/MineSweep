@@ -55,22 +55,15 @@ int main(int argc, char **argv) {
     
     argProcessor(argc, argv, &row, &col, &mine);
     
-    Board *newBoard = init(row, col, mine);
+    Board *gameBoard = init(row, col, mine);
     while (true) {
-        display(newBoard, false);
-        EndStatus result = updateState(newBoard, getInput(newBoard), false);
-        if (result == LOSS) {
-            display(newBoard, true);
-            printf("You lost\n");
-            break;
-        }
-        if (result == WIN) {
-            display(newBoard, true);
-            printf("You win\n");
-            break;
+        display(gameBoard, false);
+        EndStatus result = updateState(gameBoard, getInput(gameBoard), false);
+        if (result != NOTEND) {
+            display(gameBoard, true);
+            gameBoard = endOption(result, gameBoard);
         }
     }
 
-    freeBoard(newBoard);
     return 0;
 }

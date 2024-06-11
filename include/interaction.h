@@ -23,4 +23,7 @@ Command getInput(const Board *board);
 // updateState(board, input, updateRecursion): update the show status of board
 EndStatus updateState(Board *board, Command input, bool updateRecursion);
 
+// endOption(result, board): decides what to do after 1 game ends
+Board *endOption(const EndStatus result, Board *board);
+
 #endif

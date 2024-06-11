@@ -11,15 +11,19 @@ static void displayHelp(const Board *board) {
 void display(const Board *board, bool answer) {
     const int row = getRow(board);
     const int col = getCol(board);
-    printf("%3c", '#');
+    printf("%5s", "# |");
     for (int i = 0; i < col; i++) {
         printf("%3d", i);
     }
     puts("");
+    for (int i = 0; i < col + 2; i++) {
+        printf("---");
+    }
+    puts("");
     for (int i = 0; i < row; i++) {
-        printf("%3d", i);
+        printf("%3d %c", i, '|');
         for (int j = 0; j < col; j++) {
-            Box *current = getSingle(board, i, j);
+            const Box *current = getSingle(board, i, j);
             if (!answer) {
                 Flag flag = getShowState(current);
                 if (flag == MINE) {
@@ -129,4 +133,18 @@ EndStatus updateState(Board *board, Command input, bool updateRecursion) {
         }
     }
     return NOTEND;
+}
+
+Board *endOption(const EndStatus result, Board *board) {
+    assert(board);
+    Board *gameBoard = NULL;
+    puts(result == WIN ? "You Win" : "You Lost");
+    puts("Another game [c] or any other keys to quit");
+    if (getchar() == 'c') {
+        gameBoard = init(getRow(board), getCol(board), getNumMines(board));
+        freeBoard(board);
+    } else {
+        exit(0);
+    }
+    return gameBoard;
 }
