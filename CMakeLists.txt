@@ -4,6 +4,8 @@ set(CMAKE_C_STANDARD 23)
 set (CMAKE_C_COMPILER gcc)
 set(CMAKE_BUILD_TYPE "Release")
 
+# Debug flags
+# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -g -fsanitize=address -fsanitize=leak -fsanitize=undefined -fno-omit-frame-pointer")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Ofast")
 
 project(MineSweep)
