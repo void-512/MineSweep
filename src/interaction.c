@@ -3,7 +3,7 @@
 
 static void displayHelp(const Board *board) {
     puts("Commands");
-    printf("[%d] to checkout\n[%d] to unmark\n[%d] to mark as suspected\n[%d] to mark as mine\n", UNCOVER, MINE, QUESTION, NONE);
+    printf("[%d] to checkout\n[%d] to mark as mine\n[%d] to mark as suspected\n[%d] to unmark\n", UNCOVER, MINE, QUESTION, NONE);
     printf("Number of Mines: %d\n", getNumMines(board));
     printf("Remaining Flags: %d\n", getNumMines(board) - getNumMarked(board));
 }
