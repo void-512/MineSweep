@@ -16,7 +16,7 @@ typedef struct {
 } Board;
 
 // init(row, col): initialize a board with randomly distributed mines
-Board *init(int column, int row, int numMines);
+Board *init(int row, int column, int numMines);
 
 // freeBoard(board): free the board
 void freeBoard(Board *board);
